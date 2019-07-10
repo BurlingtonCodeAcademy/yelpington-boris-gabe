@@ -1,18 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Yelpington</title>
+</head>
+<body>
+  
 <script>
-let name = document.location.pathname.slice(1);
+  
+  let name = document.location.pathname.slice(1);
+  console.log(name);
+  if (!name) {
+    console.log("no place name specfied");
+  } else {
+    console.log("fetching place named '" + name + "'");
 
-if (!name) {
-  console.log("no place name specfied");
-} else {
-  console.log("fetching place named '" + name + "'");
-
-  fetch(name + '.json')
-    .then(function (response) {
-      return response.text();
-    })
-    .then(function (myText) {
-      console.log(myText);
-    });
-}
-
+    fetch(name + '.json')
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (myText) {
+        console.log(myText);
+      });
+  }
 </script>
+</body>
+</html>
