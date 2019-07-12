@@ -17,47 +17,6 @@
   <h1>Burlington's Finest Restaurants</h1>
   <div id="all-restaurants"></div>
 
-  
-<script>
-  fetch("all.json")
-  .then(response => response.json())
-  .then(jso => {
-    let restaurantList = jso;
-    console.log(restaurantList)
-    createList();
-    let restaurantNamePromises = restaurantList.map(findRestaurantName);
-    console.log(restaurantNamePromises)
-    Promise.all(restaurantNamePromises)
-      .then(function (nameProperties) {
-        nameProperties.forEach(createElement)
-    });
-  });
-      
-
-  function createList () {
-    let element = document.getElementById("all-restaurants");
-    let list = document.createElement('ul');
-    element.appendChild(list);
-  }
-    
-  function createElement (restaurantInfo) {
-    let element = document.getElementById("all-restaurants");
-    let list = document.querySelector('ul');
-    let listItem = document.createElement('li');
-    let website = document.createElement('a');
-    
-        website.textContent = restaurantInfo.name;
-        website.href = `/restaurant.html#${restaurantInfo.id}`;
-        
-        list.appendChild(listItem);
-        listItem.appendChild(website);
-      }
-
-  function findRestaurantName (restaurant) {
-    return fetch(`./${restaurant}.json`)
-    .then(response => response.json())
-  }
-    
-</script>
+<script src="./main.js"></script>
 </body>
 </html>
