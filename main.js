@@ -33,24 +33,35 @@ function createElement (restaurantInfo) {
 function findRestaurantInfo (restaurant) {
   return fetch(`./${restaurant}.json`)
   .then(response => response.json())
+
 }
 
-function createMarker(restaurantInfo) {
-  fetch(`https://nominatim.openstreetmap.org/search/?q=${restaurantInfo.address}&format=json`)
-    .then(response => response.json())
-    .then(jso => {
-      makeMap(jso[0]["lat"], jso[0]["lon"]);
-    });
 
   function makeMap(lat, long) {
-    var mymap = L.map("mapid").setView([lat, long], 17);
+    var mymap = L.map("mapid").setView([lat, long], 14.5);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mymap);
-
-    var marker = L.marker([lat, long]).addTo(mymap);
+    return mymap;
   }
+ 
+ let theMap = makeMap(44.476785, -73.210738)
+
+  function createMarker(restaurantInfo) {
+    fetch(`https://nominatim.openstreetmap.org/search/?q=${restaurantInfo.address}&format=json`)
+    .then(response => response.json())
+    .then(jso => {
+      let lat = jso[0]["lat"];
+      let long = jso[0]["lon"];
+      console.log(lat)
+      console.log(long)
+      var marker = L.marker([lat, long]).addTo(theMap);
+      //marker.bindPopup();
+      marker.addEventListener("click", () => {
+        window.location.replace(`/restaurant.html#${restaurantInfo.id}`) //cannot go back
+      }) 
+    });
 }

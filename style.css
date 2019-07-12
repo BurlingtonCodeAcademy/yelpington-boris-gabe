@@ -8,3 +8,7 @@ h3 {
   height: 600px;
   width: 600px;
 }
+a {
+  text-decoration: none;
+  font-size: 2em;
+}
