@@ -5,26 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Yelpington</title>
+  <style>
+    a {
+      text-decoration: none;
+      font-size: 2em;
+    }
+  </style>
+
 </head>
 <body>
+  <h1>Burlington's Finest Restaurants</h1>
+  <div id="all-restaurants"></div>
+
   
 <script>
-  
-  let name = document.location.pathname.slice(1);
-  console.log(name);
-  if (!name) {
-    console.log("no place name specfied");
-  } else {
-    console.log("fetching place named '" + name + "'");
+  fetch("all.json")
+  .then(response => response.json())
+  .then(jso => {
+    let restaurantList = jso;
+    console.log(restaurantList)
+    createList();
+    let restaurantNamePromises = restaurantList.map(findRestaurantName);
+    console.log(restaurantNamePromises)
+    Promise.all(restaurantNamePromises)
+      .then(function (nameProperties) {
+        nameProperties.forEach(createElement)
+    });
+  });
+      
 
-    fetch(name + '.json')
-      .then(function (response) {
-        return response.text();
-      })
-      .then(function (myText) {
-        console.log(myText);
-      });
+  function createList () {
+    let element = document.getElementById("all-restaurants");
+    let list = document.createElement('ul');
+    element.appendChild(list);
   }
+    
+  function createElement (restaurantInfo) {
+    let element = document.getElementById("all-restaurants");
+    let list = document.querySelector('ul');
+    let listItem = document.createElement('li');
+    let website = document.createElement('a');
+    
+        website.textContent = restaurantInfo.name;
+        website.href = `/restaurant.html#${restaurantInfo.id}`;
+        
+        list.appendChild(listItem);
+        listItem.appendChild(website);
+      }
+
+  function findRestaurantName (restaurant) {
+    return fetch(`./${restaurant}.json`)
+    .then(response => response.json())
+  }
+    
 </script>
 </body>
 </html>
