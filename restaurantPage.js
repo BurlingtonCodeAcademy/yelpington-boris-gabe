@@ -53,7 +53,7 @@ function createRestaurantPage(restaurantInfo) {
     let listItem = document.createElement("li");
     notes.appendChild(listItem);
     note = marked(note);
-    listItem.textContent = note;
+    listItem.innerHTML = note;
     console.log(element);
   });
 

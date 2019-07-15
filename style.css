@@ -2,6 +2,8 @@ body {
   display: grid;
   justify-content: center;
   font-family: helvetica;
+  background-image: url("./images/Fadedclouds.jpg.jpg");
+  background-size: cover;
 }
 h1 {
   text-align: center;
@@ -9,24 +11,35 @@ h1 {
   border-bottom: 5px black solid;
 }
 h4 {
+  font-size: 1.5em;
   display: inline;
 }
 h3 {
-  font-size: 1em;
+  font-size: 1.5em;
 }
 #mapid {
-  border: 5px black solid;
+  border: 3px black solid;
   border-radius: 20px;
-  
-  height: 40vw;
-  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+  height: 400px;
+  width: 400px;
 }
 a {
   text-decoration: none;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 #main {
-  background-color: brown;
   display: flex;
   justify-content: center;
 }
+p {
+  text-align: center;
+  font-size: 2em;
+}
+
+li > p {
+  font-size: 1em;
+  text-align: left;
+}
+
