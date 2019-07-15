@@ -49,10 +49,11 @@ function createRestaurantPage(restaurantInfo) {
   }
   noteLabel.textContent = "Notes : ";
 
-  restaurantInfo.notes.forEach(arrayItem => {
+  restaurantInfo.notes.forEach(note => {
     let listItem = document.createElement("li");
     notes.appendChild(listItem);
-    listItem.textContent = arrayItem;
+    note = marked(note);
+    listItem.textContent = note;
     console.log(element);
   });
 

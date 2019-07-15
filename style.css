@@ -1,3 +1,13 @@
+body {
+  display: grid;
+  justify-content: center;
+  font-family: helvetica;
+}
+h1 {
+  text-align: center;
+  font-size: 3em;
+  border-bottom: 5px black solid;
+}
 h4 {
   display: inline;
 }
@@ -5,10 +15,18 @@ h3 {
   font-size: 1em;
 }
 #mapid {
-  height: 600px;
-  width: 600px;
+  border: 5px black solid;
+  border-radius: 20px;
+  
+  height: 40vw;
+  width: 40vw;
 }
 a {
   text-decoration: none;
   font-size: 2em;
+}
+#main {
+  background-color: brown;
+  display: flex;
+  justify-content: center;
 }
